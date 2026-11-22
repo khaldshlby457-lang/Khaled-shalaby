@@ -1,1024 +1,334 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Khaled Shalaby | Customer Experience Executive & Growth Strategist</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-base: #07080A;
-      --bg-surface: #0E1015;
-      --bg-glass: rgba(20, 23, 30, 0.55);
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-gold: rgba(212, 163, 94, 0.35);
-      --gold-primary: #D4A35E;
-      --gold-light: #F3D19E;
-      --gold-glow: rgba(212, 163, 94, 0.18);
-      --text-main: #F5F6F8;
-      --text-muted: #9499A6;
-      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      background-color: var(--bg-base);
-      color: var(--text-main);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-    }
-
-    body {
-      position: relative;
-      min-height: 100vh;
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* Subtle Architectural Grid + Ambient Glows */
-    .bg-grid {
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      background-size: 64px 64px;
-      background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.022) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
-      mask-image: radial-gradient(ellipse 80% 60% at 50% 20%, #000 40%, transparent 100%);
-      -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 20%, #000 40%, transparent 100%);
-    }
-
-    .ambient-orb {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(130px);
-      z-index: -1;
-      pointer-events: none;
-      animation: floatOrb 16s ease-in-out infinite alternate;
-    }
-
-    .orb-1 {
-      width: 520px;
-      height: 520px;
-      background: radial-gradient(circle, rgba(212, 163, 94, 0.16) 0%, transparent 70%);
-      top: -120px;
-      right: -80px;
-    }
-
-    .orb-2 {
-      width: 440px;
-      height: 440px;
-      background: radial-gradient(circle, rgba(56, 89, 139, 0.14) 0%, transparent 70%);
-      bottom: 5%;
-      left: -120px;
-      animation-delay: -6s;
-    }
-
-    @keyframes floatOrb {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(-40px, 50px) scale(1.12); }
-    }
-
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: var(--bg-base); }
-    ::-webkit-scrollbar-thumb { background: #232732; border-radius: 99px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--gold-primary); }
-
-    .container {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* Glass Floating Header */
-    header {
-      position: fixed;
-      top: 20px;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      padding: 0 24px;
-    }
-
-    .nav-shell {
-      max-width: 1180px;
-      margin: 0 auto;
-      background: rgba(12, 14, 19, 0.72);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid var(--border-subtle);
-      border-radius: 999px;
-      padding: 12px 28px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-    }
-
-    .logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.2rem;
-      letter-spacing: -0.02em;
-      color: var(--text-main);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .logo-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
-      box-shadow: 0 0 12px var(--gold-primary);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text-muted);
-      font-size: 0.88rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      position: relative;
-      padding: 4px 0;
-      transition: color 0.3s ease;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0%;
-      height: 1.5px;
-      background: linear-gradient(90deg, var(--gold-primary), var(--gold-light));
-      transition: width 0.3s var(--ease-out-expo);
-    }
-
-    .nav-links a:hover { color: var(--text-main); }
-    .nav-links a:hover::after { width: 100%; }
-
-    .btn-nav {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 22px;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-decoration: none;
-      color: #090A0D;
-      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
-      box-shadow: 0 4px 20px rgba(212, 163, 94, 0.3);
-      transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s ease;
-    }
-
-    .btn-nav:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(212, 163, 94, 0.45);
-    }
-
-    /* Hero Section */
-    .hero {
-      padding: 156px 0 96px;
-    }
-
-    .hero-layout {
-      display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
-      gap: 64px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 16px;
-      border-radius: 999px;
-      background: rgba(212, 163, 94, 0.08);
-      border: 1px solid var(--border-gold);
-      color: var(--gold-light);
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    .pulse-ring {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--gold-primary);
-      position: relative;
-    }
-
-    .pulse-ring::after {
-      content: "";
-      position: absolute;
-      inset: -4px;
-      border-radius: 50%;
-      border: 1.5px solid var(--gold-primary);
-      animation: pulseAnim 2s infinite;
-    }
-
-    @keyframes pulseAnim {
-      0% { transform: scale(0.8); opacity: 1; }
-      100% { transform: scale(2.1); opacity: 0; }
-    }
-
-    .hero h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2.75rem, 5.2vw, 4.3rem);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      margin-bottom: 22px;
-      background: linear-gradient(180deg, #FFFFFF 0%, #B8BDC9 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero h1 span {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-weight: 700;
-      font-size: 1.15em;
-      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-lead {
-      font-size: 1.12rem;
-      color: var(--text-muted);
-      max-width: 560px;
-      margin-bottom: 38px;
-    }
-
-    .hero-lead strong { color: var(--text-main); font-weight: 600; }
-
-    .cta-group {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary-lux {
-      padding: 16px 32px;
-      border-radius: 14px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      text-decoration: none;
-      color: #08090C;
-      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
-      box-shadow: 0 12px 32px -8px rgba(212, 163, 94, 0.45);
-      transition: all 0.35s var(--ease-out-expo);
-    }
-
-    .btn-primary-lux:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 18px 40px -8px rgba(212, 163, 94, 0.65);
-    }
-
-    .btn-glass {
-      padding: 16px 32px;
-      border-radius: 14px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      text-decoration: none;
-      color: var(--text-main);
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-subtle);
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
-    }
-
-    .btn-glass:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: var(--border-gold);
-      transform: translateY(-2px);
-    }
-
-    /* Portrait Architectural Frame */
-    .portrait-stage {
-      position: relative;
-      max-width: 380px;
-      margin: 0 auto;
-      perspective: 1000px;
-    }
-
-    .portrait-glow {
-      position: absolute;
-      inset: -12px;
-      background: conic-gradient(from 180deg at 50% 50%, var(--gold-primary), transparent 40%, var(--gold-light), transparent 80%, var(--gold-primary));
-      border-radius: 30px;
-      filter: blur(18px);
-      opacity: 0.35;
-      z-index: 0;
-      animation: spinGlow 12s linear infinite;
-    }
-
-    @keyframes spinGlow {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .portrait-card {
-      position: relative;
-      z-index: 1;
-      background: var(--bg-surface);
-      border: 1px solid rgba(212, 163, 94, 0.35);
-      border-radius: 26px;
-      padding: 12px;
-      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.85);
-      transition: transform 0.4s var(--ease-out-expo);
-    }
-
-    .portrait-card:hover {
-      transform: translateY(-6px) rotateX(2deg) rotateY(-2deg);
-    }
-
-    .portrait-img-box {
-      width: 100%;
-      aspect-ratio: 4 / 5;
-      border-radius: 18px;
-      overflow: hidden;
-      position: relative;
-      background: #14171F;
-    }
-
-    .portrait-img-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-      transition: transform 0.7s var(--ease-out-expo);
-    }
-
-    .portrait-card:hover .portrait-img-box img {
-      transform: scale(1.04);
-    }
-
-    .portrait-badge-overlay {
-      position: absolute;
-      bottom: 14px;
-      left: 14px;
-      right: 14px;
-      background: rgba(10, 12, 16, 0.78);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 14px;
-      padding: 12px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .portrait-badge-overlay strong {
-      font-size: 0.92rem;
-      display: block;
-      color: #FFF;
-    }
-
-    .portrait-badge-overlay span {
-      font-size: 0.78rem;
-      color: var(--gold-light);
-    }
-
-    /* Infinite Marquee Ticker */
-    .marquee-wrap {
-      border-top: 1px solid var(--border-subtle);
-      border-bottom: 1px solid var(--border-subtle);
-      background: rgba(255, 255, 255, 0.015);
-      padding: 18px 0;
-      overflow: hidden;
-      display: flex;
-      margin: 24px 0 80px;
-    }
-
-    .marquee-track {
-      display: flex;
-      gap: 48px;
-      white-space: nowrap;
-      animation: scrollMarquee 28s linear infinite;
-    }
-
-    .marquee-item {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 48px;
-    }
-
-    .marquee-item::after {
-      content: "✦";
-      color: var(--gold-primary);
-    }
-
-    @keyframes scrollMarquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    /* Spotlight Interactive Cards */
-    .spotlight-card {
-      position: relative;
-      background: var(--bg-glass);
-      border: 1px solid var(--border-subtle);
-      border-radius: 24px;
-      padding: 36px;
-      backdrop-filter: blur(16px);
-      overflow: hidden;
-      transition: transform 0.35s var(--ease-out-expo), border-color 0.35s ease;
-    }
-
-    .spotlight-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(212, 163, 94, 0.12), transparent 45%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      pointer-events: none;
-    }
-
-    .spotlight-card:hover {
-      border-color: var(--border-gold);
-      transform: translateY(-4px);
-    }
-
-    .spotlight-card:hover::before {
-      opacity: 1;
-    }
-
-    /* KPI Metrics Grid */
-    .kpi-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      margin-bottom: 96px;
-    }
-
-    .kpi-card {
-      padding: 28px 24px;
-      text-align: left;
-    }
-
-    .kpi-num {
-      font-family: 'Syne', sans-serif;
-      font-size: 2rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #FFFFFF 20%, var(--gold-light) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 6px;
-    }
-
-    .kpi-label {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    /* Section Header */
-    .section-header {
-      margin-bottom: 44px;
-    }
-
-    .section-kicker {
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold-primary);
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    .section-header h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2rem, 3.6vw, 2.75rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-
-    /* Experience Bento */
-    .exp-bento {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      margin-bottom: 96px;
-    }
-
-    .exp-featured {
-      grid-column: span 2;
-      background: linear-gradient(135deg, rgba(26, 29, 38, 0.9) 0%, rgba(14, 16, 21, 0.95) 100%);
-      border-color: var(--border-gold);
-      display: grid;
-      grid-template-columns: 1fr 1.3fr;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .role-pill {
-      display: inline-block;
-      padding: 5px 12px;
-      border-radius: 999px;
-      font-size: 0.76rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      background: rgba(212, 163, 94, 0.14);
-      color: var(--gold-light);
-      border: 1px solid rgba(212, 163, 94, 0.25);
-      margin-bottom: 14px;
-    }
-
-    .exp-bento h3 {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.4rem;
-      margin-bottom: 6px;
-      color: #FFF;
-    }
-
-    .exp-org {
-      color: var(--gold-primary);
-      font-weight: 600;
-      font-size: 0.95rem;
-      margin-bottom: 14px;
-    }
-
-    .exp-bento p {
-      color: var(--text-muted);
-      font-size: 0.96rem;
-    }
-
-    /* Expertise Pillars */
-    .pillars-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-bottom: 96px;
-    }
-
-    .pillar-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 14px;
-      background: rgba(212, 163, 94, 0.12);
-      border: 1px solid var(--border-gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold-light);
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.1rem;
-      margin-bottom: 20px;
-    }
-
-    .pillars-grid h3 {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.22rem;
-      margin-bottom: 16px;
-    }
-
-    .pillar-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .pillar-list li {
-      color: var(--text-muted);
-      font-size: 0.93rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .pillar-list li::before {
-      content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--gold-primary);
-      flex-shrink: 0;
-    }
-
-    /* Executive Contact CTA */
-    .contact-panel {
-      background: linear-gradient(145deg, #12151D 0%, #0A0C10 100%);
-      border: 1px solid var(--border-gold);
-      border-radius: 32px;
-      padding: 56px;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 48px;
-      align-items: center;
-      margin-bottom: 64px;
-      box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.9);
-    }
-
-    .contact-panel h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(1.9rem, 3.4vw, 2.6rem);
-      line-height: 1.12;
-      margin-bottom: 16px;
-    }
-
-    .contact-panel p {
-      color: var(--text-muted);
-      margin-bottom: 28px;
-    }
-
-    .direct-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .chip-link {
-      padding: 12px 18px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-main);
-      font-size: 0.88rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.25s ease;
-    }
-
-    .chip-link:hover {
-      border-color: var(--gold-primary);
-      background: rgba(212, 163, 94, 0.12);
-      color: var(--gold-light);
-    }
-
-    .lux-form {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .lux-form input, .lux-form textarea {
-      width: 100%;
-      padding: 15px 18px;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border-subtle);
-      color: #FFF;
-      font-family: inherit;
-      font-size: 0.94rem;
-      transition: border-color 0.25s ease, background 0.25s ease;
-    }
-
-    .lux-form input:focus, .lux-form textarea:focus {
-      outline: none;
-      border-color: var(--gold-primary);
-      background: rgba(255, 255, 255, 0.06);
-    }
-
-    .lux-submit {
-      padding: 16px;
-      border-radius: 14px;
-      border: none;
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: #08090C;
-      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
-      cursor: pointer;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .lux-submit:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(212, 163, 94, 0.4);
-    }
-
-    footer {
-      border-top: 1px solid var(--border-subtle);
-      padding: 32px 0 48px;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.88rem;
-    }
-
-    /* Scroll Reveal Utility */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 920px) {
-      .hero-layout, .exp-bento, .pillars-grid, .contact-panel, .exp-featured {
-        grid-template-columns: 1fr;
-      }
-      .exp-featured { grid-column: span 1; }
-      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
-      .nav-links { display: none; }
-      .contact-panel { padding: 32px 24px; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Khaled Shalaby | Customer Experience &amp; Sales</title>
+<meta name="description" content="Khaled Shalaby, Customer Experience Executive at Mumzworld. Sales psychology meets post-purchase experience.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0f1128;--ink2:#171a3a;--lilac:#b9a8ff;--peach:#ffb89a;--mint:#8fe3cf;--text:#f1effb;--mute:#a9a8c7;
+  --glass:rgba(255,255,255,.06);--line:rgba(255,255,255,.14);--r:22px;
+  --serif:'Fraunces',Georgia,serif;--sans:'Manrope',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font-family:var(--sans);color:var(--text);background:var(--ink);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:
+  radial-gradient(600px 500px at 12% 8%,rgba(185,168,255,.28),transparent 70%),
+  radial-gradient(700px 600px at 92% 30%,rgba(255,184,154,.16),transparent 70%),
+  radial-gradient(600px 600px at 20% 95%,rgba(143,227,207,.14),transparent 70%),var(--ink)}
+#glow{position:fixed;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:-1;background:radial-gradient(circle,rgba(185,168,255,.16),transparent 65%);transform:translate(-50%,-50%);left:50%;top:30%;transition:left .25s,top .25s}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--mint);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+section{padding:104px 0}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.08;letter-spacing:-.02em}
+h2{font-size:clamp(2rem,4.4vw,3.2rem);margin-bottom:14px}
+.lead{color:var(--mute);max-width:56ch;font-size:1.06rem}
+.glass{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+
+/* nav */
+header{position:fixed;top:14px;left:0;right:0;z-index:50}
+nav{max-width:1160px;margin:0 auto 0;padding:10px 14px 10px 22px;display:flex;align-items:center;justify-content:space-between;border-radius:999px;width:calc(100% - 32px)}
+.logo{font-family:var(--serif);font-weight:700;font-size:1.2rem}
+.logo i{font-style:normal;color:var(--peach)}
+.links{display:flex;gap:6px;align-items:center}
+.links a{padding:8px 15px;border-radius:99px;font-size:.92rem;font-weight:600;color:var(--mute);transition:.25s}
+.links a:hover,.links a.on{color:var(--text);background:rgba(255,255,255,.09)}
+.links .cta{background:linear-gradient(120deg,var(--lilac),var(--peach));color:#1a1636}
+.links .cta:hover{color:#1a1636;transform:translateY(-1px);filter:brightness(1.07)}
+.burger{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;color:var(--text)}
+.burger span{display:block;width:22px;height:2px;background:currentColor;margin:5px auto;transition:.3s}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* hero */
+.hero{min-height:100svh;display:flex;align-items:center;padding:130px 0 70px}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.badge{display:inline-flex;gap:10px;align-items:center;padding:8px 16px;border-radius:99px;font-size:.86rem;font-weight:600;margin-bottom:26px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 0 rgba(143,227,207,.6);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(143,227,207,0)}100%{box-shadow:0 0 0 0 rgba(143,227,207,0)}}
+h1{font-size:clamp(2.6rem,6.4vw,5rem);margin-bottom:22px}
+h1 .ln{display:block;overflow:hidden}
+h1 .ln span{display:block;transform:translateY(105%);animation:up .9s cubic-bezier(.2,.8,.2,1) forwards}
+h1 .ln:nth-child(2) span{animation-delay:.12s}h1 .ln:nth-child(3) span{animation-delay:.24s}
+@keyframes up{to{transform:none}}
+.hero p.lead{margin-bottom:34px;opacity:0;animation:fade 1s .5s forwards}
+.hero .btns{opacity:0;animation:fade 1s .7s forwards}
+@keyframes fade{to{opacity:1}}
+.btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:99px;font-weight:700;font-size:.97rem;border:1px solid var(--line);cursor:pointer;font-family:inherit;color:var(--text);background:var(--glass);transition:transform .25s,box-shadow .25s,background .25s}
+.btn:hover{transform:translateY(-3px);background:rgba(255,255,255,.12)}
+.btn.pri{background:linear-gradient(120deg,var(--lilac),var(--peach));color:#1a1636;border:0}
+.btn.pri:hover{box-shadow:0 14px 36px -10px rgba(255,184,154,.6)}
+.btn svg{width:18px;height:18px;transition:transform .25s}
+.btn:hover svg{transform:translateX(3px)}
+
+.portrait{position:relative;justify-self:center;width:min(100%,380px)}
+.arch{position:relative;aspect-ratio:3/4;border-radius:999px 999px 28px 28px;padding:10px;border:1px solid var(--line);background:linear-gradient(160deg,rgba(185,168,255,.25),rgba(255,184,154,.1))}
+.arch::after{content:"";position:absolute;inset:-16px;border-radius:999px 999px 36px 36px;border:1px dashed rgba(185,168,255,.35);pointer-events:none;animation:spin 1s}
+.arch .in{width:100%;height:100%;border-radius:999px 999px 20px 20px;overflow:hidden;position:relative;background:linear-gradient(160deg,var(--ink2),#2a2060);display:grid;place-items:center}
+.arch img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.arch:hover img{transform:scale(1.05)}
+.arch .fb{font-family:var(--serif);font-size:5.5rem;font-weight:700;color:var(--lilac);opacity:.9}
+.chip{position:absolute;padding:11px 16px;border-radius:16px;font-size:.84rem;font-weight:700;animation:float 6s ease-in-out infinite}
+.chip small{display:block;color:var(--mute);font-weight:500;font-size:.74rem}
+.c1{left:-34px;top:20%}.c2{right:-26px;bottom:18%;animation-delay:-3s}
+@keyframes float{50%{transform:translateY(-12px)}}
+
+/* KPIs */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:-30px}
+.kpi{padding:28px 24px;transition:transform .3s,border-color .3s}
+.kpi:hover{transform:translateY(-6px);border-color:rgba(185,168,255,.5)}
+.kpi b{font-family:var(--serif);font-size:2.8rem;line-height:1;display:block;margin-bottom:8px}
+.kpi span{color:var(--mute);font-size:.93rem}
+
+/* about */
+.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+.about p{color:var(--mute);margin-bottom:18px}
+.about p strong{color:var(--text)}
+.cert{display:flex;gap:16px;align-items:center;padding:20px 22px;margin-top:26px}
+.cert .ic{flex:none;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--mint),var(--lilac));color:#14213a;font-weight:800}
+.cert small{color:var(--mute);display:block}
+
+/* timeline (true sequence) */
+.tl{position:relative;margin-top:50px;padding-left:34px}
+.tl::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--lilac),var(--peach),transparent)}
+.job{position:relative;padding:26px 28px;margin-bottom:20px;transition:transform .3s,border-color .3s}
+.job:hover{transform:translateX(6px);border-color:rgba(255,184,154,.5)}
+.job::before{content:"";position:absolute;left:-34px;top:34px;width:16px;height:16px;border-radius:50%;background:var(--ink);border:3px solid var(--peach)}
+.job.now::before{background:var(--mint);border-color:var(--mint);animation:pulse 2s infinite}
+.job h3{font-size:1.35rem;margin-bottom:4px}
+.job .meta{display:flex;flex-wrap:wrap;gap:8px 14px;color:var(--lilac);font-weight:700;font-size:.9rem;margin-bottom:10px}
+.job p{color:var(--mute);max-width:70ch}
+
+/* skills */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:46px}
+.pillar{padding:32px 28px;position:relative;overflow:hidden;transition:transform .3s}
+.pillar:hover{transform:translateY(-6px)}
+.pillar::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--acc)}
+.pillar h3{font-size:1.4rem;margin-bottom:18px}
+.tags{display:flex;flex-wrap:wrap;gap:9px}
+.tags li{list-style:none;padding:8px 14px;border-radius:99px;font-size:.87rem;font-weight:600;border:1px solid var(--line);background:rgba(255,255,255,.04);transition:.25s;cursor:default}
+.tags li:hover{background:var(--acc);color:#16142e;border-color:transparent;transform:translateY(-2px)}
+
+/* contact */
+.contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;margin-top:46px}
+.cards{display:grid;gap:14px}
+.cc{display:flex;gap:16px;align-items:center;padding:20px 22px;transition:transform .3s,border-color .3s}
+.cc:hover{transform:translateX(6px);border-color:rgba(143,227,207,.55)}
+.cc .ic{width:46px;height:46px;border-radius:14px;flex:none;display:grid;place-items:center;background:rgba(255,255,255,.08)}
+.cc svg{width:22px;height:22px}
+.cc small{color:var(--mute);display:block;font-size:.8rem}
+.cc span{font-weight:700;word-break:break-word}
+form{padding:30px;display:grid;gap:16px}
+label{font-size:.88rem;font-weight:700;display:grid;gap:7px}
+input,textarea{font:inherit;color:var(--text);background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:14px;padding:14px 16px;transition:.25s;width:100%}
+textarea{min-height:130px;resize:vertical}
+input:focus,textarea:focus{outline:0;border-color:var(--lilac);box-shadow:0 0 0 4px rgba(185,168,255,.18)}
+.note{font-size:.85rem;color:var(--mint);min-height:1.2em}
+footer{padding:40px 0 56px;text-align:center;color:var(--mute);font-size:.9rem;border-top:1px solid var(--line)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+@media(max-width:960px){
+  .hero .wrap,.about,.contact{grid-template-columns:1fr}
+  .portrait{order:-1;width:min(78%,300px)}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .pillars{grid-template-columns:1fr}
+  section{padding:80px 0}
+}
+@media(max-width:760px){
+  .burger{display:block}
+  .links{position:absolute;top:70px;left:0;right:0;flex-direction:column;align-items:stretch;padding:14px;border-radius:24px;background:rgba(23,26,58,.92);border:1px solid var(--line);backdrop-filter:blur(18px);opacity:0;visibility:hidden;transform:translateY(-10px);transition:.3s}
+  .links.open{opacity:1;visibility:visible;transform:none}
+  .links a{padding:14px 16px;text-align:center}
+  .c1{left:-10px}.c2{right:-6px}
+}
+@media(max-width:420px){.kpis{grid-template-columns:1fr}.btn{width:100%;justify-content:center}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv,h1 .ln span,.hero p.lead,.hero .btns{opacity:1;transform:none}}
+</style>
 </head>
 <body>
+<div id="glow" aria-hidden="true"></div>
 
-  <div class="bg-grid"></div>
-  <div class="ambient-orb orb-1"></div>
-  <div class="ambient-orb orb-2"></div>
-
-  <!-- Floating Glass Navigation -->
-  <header>
-    <div class="nav-shell">
-      <a href="#" class="logo">
-        <span class="logo-dot"></span>
-        KHALED SHALABY
-      </a>
-      <ul class="nav-links">
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#expertise">Expertise</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <a href="https://www.linkedin.com/in/khaled-shalaby-ab5457222" target="_blank" rel="noopener" class="btn-nav">
-        LinkedIn ↗
-      </a>
+<header>
+  <nav class="glass" aria-label="Main">
+    <a href="#top" class="logo">Khaled<i>.</i>Shalaby</a>
+    <button class="burger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="links">
+      <a href="#about">About</a><a href="#journey">Journey</a><a href="#skills">Skills</a>
+      <a href="#contact" class="cta">Let's talk</a>
     </div>
-  </header>
+  </nav>
+</header>
 
-  <main>
-    <!-- Hero Section -->
-    <section class="hero container">
-      <div class="hero-layout">
-        <div class="reveal">
-          <div class="eyebrow">
-            <span class="pulse-ring"></span>
-            CX Executive @ Mumzworld
-          </div>
-          <h1>
-            Architecting <span>high-trust</span> customer journeys.
-          </h1>
-          <p class="hero-lead">
-            I’m <strong>Khaled Shalaby</strong> (23)—combining high-stakes real estate negotiation, US solar telesales, and e-commerce entrepreneurship to turn first-time buyers into lifelong brand advocates.
-          </p>
-          <div class="cta-group">
-            <a href="#experience" class="btn-primary-lux">Explore Track Record</a>
-            <a href="https://www.linkedin.com/in/khaled-shalaby-ab5457222" target="_blank" rel="noopener" class="btn-glass">Connect on LinkedIn</a>
-          </div>
-        </div>
-
-        <div class="portrait-stage reveal">
-          <div class="portrait-glow"></div>
-          <div class="portrait-card">
-            <div class="portrait-img-box">
-              <img src="profile.jpg" alt="Khaled Shalaby" />
-              <div class="portrait-badge-overlay">
-                <div>
-                  <strong>Khaled Shalaby</strong>
-                  <span>Customer Experience & Sales</span>
-                </div>
-                <span style="font-size:0.75rem; color:#9499A6;">Cairo, EG</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Infinite Marquee -->
-    <div class="marquee-wrap">
-      <div class="marquee-track">
-        <span class="marquee-item">Customer Experience Management</span>
-        <span class="marquee-item">Mumzworld MENA</span>
-        <span class="marquee-item">High-Ticket Real Estate Closing</span>
-        <span class="marquee-item">US Solar Outbound Telesales</span>
-        <span class="marquee-item">E-Commerce Founder</span>
-        <span class="marquee-item">Udacity Certified Digital Marketer</span>
-        <span class="marquee-item">Customer Experience Management</span>
-        <span class="marquee-item">Mumzworld MENA</span>
-        <span class="marquee-item">High-Ticket Real Estate Closing</span>
-        <span class="marquee-item">US Solar Outbound Telesales</span>
-        <span class="marquee-item">E-Commerce Founder</span>
-        <span class="marquee-item">Udacity Certified Digital Marketer</span>
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="badge glass"><span class="dot"></span>Customer Experience Executive at Mumzworld</div>
+      <h1><span class="ln"><span>I turn first-time</span></span><span class="ln"><span>shoppers into</span></span><span class="ln"><span>lifelong advocates.</span></span></h1>
+      <p class="lead">Hi, I'm Khaled. I connect high-converting sales psychology with post-purchase experiences customers remember, across MENA's leading mother, baby and child e-commerce platform.</p>
+      <div class="btns">
+        <a class="btn pri" href="#contact">Work with me <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn" href="#journey">See my journey</a>
       </div>
     </div>
-
-    <div class="container">
-      <!-- KPI Grid -->
-      <section class="kpi-grid reveal">
-        <div class="spotlight-card kpi-card">
-          <div class="kpi-num">Mumzworld</div>
-          <div class="kpi-label">Regional E-Commerce CX</div>
-        </div>
-        <div class="spotlight-card kpi-card">
-          <div class="kpi-num">3+ Years</div>
-          <div class="kpi-label">Sales & Retention Mastery</div>
-        </div>
-        <div class="spotlight-card kpi-card">
-          <div class="kpi-num">MENA & US</div>
-          <div class="kpi-label">Cross-Market B2C Experience</div>
-        </div>
-        <div class="spotlight-card kpi-card">
-          <div class="kpi-num">Udacity</div>
-          <div class="kpi-label">Certified Digital Marketer</div>
-        </div>
-      </section>
-
-      <!-- Experience Section -->
-      <section id="experience" class="reveal">
-        <div class="section-header">
-          <span class="section-kicker">Career Trajectory</span>
-          <h2>Experience & Ventures</h2>
-        </div>
-
-        <div class="exp-bento">
-          <div class="spotlight-card exp-featured">
-            <div>
-              <span class="role-pill">Current Role • Present</span>
-              <h3>Customer Experience Executive</h3>
-              <div class="exp-org">Mumzworld — MENA’s #1 Mother & Child Platform</div>
-            </div>
-            <p>
-              Spearheading high-empathy customer resolution across the Middle East. Managing L3 warranty and logistics escalations, collaborating directly with vendors and last-mile delivery teams, and protecting customer lifetime value at scale.
-            </p>
-          </div>
-
-          <div class="spotlight-card">
-            <span class="role-pill">2024 • Venture</span>
-            <h3>Founder & E-Commerce Operator</h3>
-            <div class="exp-org">Independent Apparel Brand</div>
-            <p>
-              Built a direct-to-consumer clothing brand from zero—overseeing product sourcing, brand identity, paid digital acquisition, storefront operations, and end-to-end customer retention.
-            </p>
-          </div>
-
-          <div class="spotlight-card">
-            <span class="role-pill">6 Months • US Market</span>
-            <h3>Telesales Agent (USA Solar)</h3>
-            <div class="exp-org">Massachusetts Residential Account</div>
-            <p>
-              Consulted with US homeowners on clean energy transitions, handling technical and financial objections over outbound calls while consistently hitting conversion targets.
-            </p>
-          </div>
-
-          <div class="spotlight-card">
-            <span class="role-pill">2022 – 2024</span>
-            <h3>Senior Property Consultant</h3>
-            <div class="exp-org">Foundation Stone Real Estate</div>
-            <p>
-              Led high-value property negotiations, matched investors and families with tailored real estate assets, and consistently outperformed quarterly sales quotas.
-            </p>
-          </div>
-
-          <div class="spotlight-card">
-            <span class="role-pill">2021 – 2022</span>
-            <h3>Junior Sales Agent</h3>
-            <div class="exp-org">The Crest Real Estate</div>
-            <p>
-              Conducted on-site property viewings, analyzed local market trends, and guided buyers seamlessly through the acquisition process.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Expertise Pillars -->
-      <section id="expertise" class="reveal">
-        <div class="section-header">
-          <span class="section-kicker">Core Competencies</span>
-          <h2>Commercial & CX Pillars</h2>
-        </div>
-
-        <div class="pillars-grid">
-          <div class="spotlight-card">
-            <div class="pillar-icon">01</div>
-            <h3>Customer Experience</h3>
-            <ul class="pillar-list">
-              <li>L3 Escalation & Warranty Resolution</li>
-              <li>Vendor & Logistics Coordination</li>
-              <li>CSAT & Post-Purchase Retention</li>
-              <li>Bilingual Communication (AR / EN)</li>
-            </ul>
-          </div>
-
-          <div class="spotlight-card">
-            <div class="pillar-icon">02</div>
-            <h3>Sales & Negotiation</h3>
-            <ul class="pillar-list">
-              <li>Consultative B2C Closing</li>
-              <li>High-Ticket Real Estate Negotiation</li>
-              <li>US Market Outbound Telesales</li>
-              <li>Objection Handling & De-escalation</li>
-            </ul>
-          </div>
-
-          <div class="spotlight-card">
-            <div class="pillar-icon">03</div>
-            <h3>E-Commerce & Digital</h3>
-            <ul class="pillar-list">
-              <li>Udacity Certified Digital Marketer</li>
-              <li>D2C Storefront Operations</li>
-              <li>Product Sourcing & Brand Positioning</li>
-              <li>Customer Journey Optimization</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Contact Section -->
-      <section id="contact" class="reveal">
-        <div class="contact-panel">
-          <div>
-            <span class="section-kicker">Get In Touch</span>
-            <h2>Let’s build unforgettable customer experiences.</h2>
-            <p>
-              Open to strategic CX leadership roles, e-commerce growth collaborations, and professional networking across Cairo and MENA.
-            </p>
-            <div class="direct-links">
-              <a href="https://www.linkedin.com/in/khaled-shalaby-ab5457222" target="_blank" rel="noopener" class="chip-link">LinkedIn ↗</a>
-              <a href="https://wa.me/201097608806" target="_blank" rel="noopener" class="chip-link">WhatsApp: +20 109 760 8806</a>
-              <a href="mailto:khaldshlby457@gmail.com" class="chip-link">khaldshlby457@gmail.com</a>
-            </div>
-          </div>
-
-          <form class="lux-form" onsubmit="handleContact(event)">
-            <input type="text" id="cName" placeholder="Your Name" required />
-            <input type="email" id="cEmail" placeholder="Your Email" required />
-            <textarea id="cMsg" rows="3" placeholder="Tell me about your project or opportunity..." required></textarea>
-            <button type="submit" class="lux-submit">Send Direct Inquiry →</button>
-          </form>
-        </div>
-      </section>
+    <div class="portrait">
+      <div class="arch"><div class="in">
+        <span class="fb" aria-hidden="true">KS</span>
+        <img src="profile.jpg" alt="Khaled Shalaby" onerror="this.remove()">
+      </div></div>
+      <div class="chip glass c1">Cairo, Egypt<small>Age 23</small></div>
+      <div class="chip glass c2">Arabic &amp; English<small>Bilingual support</small></div>
     </div>
-  </main>
+  </div>
+</section>
 
-  <footer>
-    <div class="container">
-      © 2026 Khaled Shalaby • Designed for Impact • Cairo, Egypt
+<div class="wrap kpis">
+  <div class="kpi glass rv"><b data-n="5">0</b><span>Roles across sales, real estate and e-commerce</span></div>
+  <div class="kpi glass rv"><b data-n="5" data-s="+">0</b><span>Years in customer-facing, quota-driven work</span></div>
+  <div class="kpi glass rv"><b data-n="3">0</b><span>Industries: property, solar and retail</span></div>
+  <div class="kpi glass rv"><b>L3</b><span>Warranty and logistics escalations resolved</span></div>
+</div>
+
+<section id="about">
+  <div class="wrap about">
+    <div class="rv">
+      <h2>Sales instincts, service discipline.</h2>
+      <p class="lead">Most people pick a side. I've worked both ends of the customer relationship.</p>
     </div>
-  </footer>
+    <div class="rv">
+      <p>I started in real estate, closing high-ticket deals where trust decides everything. I moved into US outbound telesales, where every objection has seconds to be answered. Then I built my own apparel brand from zero.</p>
+      <p>Today at Mumzworld, <strong>I own complex customer journeys end to end</strong>: warranty claims, vendor delays, delivery failures. The goal is simple. Fix the problem, protect the relationship, keep the customer coming back.</p>
+      <div class="cert glass"><div class="ic">U</div><div><strong>Udacity Certified Professional Digital Marketer</strong><small>Digital marketing, acquisition and growth</small></div></div>
+    </div>
+  </div>
+</section>
 
-  <script>
-    // Interactive Mouse Spotlight on Cards
-    document.querySelectorAll('.spotlight-card').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect();
-        card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-        card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
-      });
-    });
+<section id="journey">
+  <div class="wrap">
+    <h2 class="rv">Career journey</h2>
+    <p class="lead rv">From the field to the founder's desk to customer experience. Newest first.</p>
+    <div class="tl">
+      <article class="job glass now rv">
+        <h3>Customer Experience Executive</h3>
+        <div class="meta"><span>Mumzworld</span><span>Present</span></div>
+        <p>Managing end-to-end customer journeys across MENA, resolving complex L3 warranty and logistics escalations, coordinating with vendors and delivery teams, and protecting customer lifetime value at scale.</p>
+      </article>
+      <article class="job glass rv">
+        <h3>Founder &amp; E-Commerce Operator</h3>
+        <div class="meta"><span>Independent Apparel Brand</span><span>2024</span></div>
+        <p>Built a D2C clothing brand from zero, handling product sourcing, brand identity, paid digital acquisition, storefront operations and customer retention.</p>
+      </article>
+      <article class="job glass rv">
+        <h3>Telesales Agent</h3>
+        <div class="meta"><span>USA Solar Account, Massachusetts</span><span>6 months</span></div>
+        <p>Consulted US homeowners on solar adoption through outbound calls, overcame technical and financial objections, and consistently hit conversion targets.</p>
+      </article>
+      <article class="job glass rv">
+        <h3>Senior Property Consultant</h3>
+        <div class="meta"><span>Foundation Stone Real Estate</span><span>2022 – 2024</span></div>
+        <p>Led high-ticket real estate negotiations, matched buyers with tailored property investments, and consistently surpassed quarterly sales quotas.</p>
+      </article>
+      <article class="job glass rv">
+        <h3>Junior Sales Agent</h3>
+        <div class="meta"><span>The Crest Real Estate</span><span>2021 – 2022</span></div>
+        <p>Conducted property viewings, gathered market intelligence, and guided buyers smoothly through the acquisition lifecycle.</p>
+      </article>
+    </div>
+  </div>
+</section>
 
-    // Scroll Reveal Observer
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.12 });
+<section id="skills">
+  <div class="wrap">
+    <h2 class="rv">What I bring</h2>
+    <p class="lead rv">Three strengths that compound: keep customers, win customers, grow the business.</p>
+    <div class="pillars">
+      <div class="pillar glass rv" style="--acc:var(--mint)"><h3>Customer Experience</h3>
+        <ul class="tags"><li>L3 Escalation &amp; Warranty Resolution</li><li>Vendor &amp; Logistics Coordination</li><li>CSAT &amp; Retention Optimization</li><li>Bilingual Support (Arabic &amp; English)</li></ul></div>
+      <div class="pillar glass rv" style="--acc:var(--peach)"><h3>Sales &amp; Negotiation</h3>
+        <ul class="tags"><li>Consultative B2C Closing</li><li>High-Ticket Real Estate Negotiation</li><li>US Outbound Telesales</li><li>Objection Handling &amp; De-escalation</li></ul></div>
+      <div class="pillar glass rv" style="--acc:var(--lilac)"><h3>E-Commerce &amp; Growth</h3>
+        <ul class="tags"><li>Digital Marketing (Udacity Certified)</li><li>D2C Storefront Operations</li><li>Product Sourcing &amp; Brand Positioning</li><li>Customer Journey Optimization</li></ul></div>
+    </div>
+  </div>
+</section>
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+<section id="contact">
+  <div class="wrap">
+    <h2 class="rv">Let's build something customers love.</h2>
+    <p class="lead rv">Open to conversations about customer experience, sales and e-commerce roles. I reply fast.</p>
+    <div class="contact">
+      <div class="cards rv">
+        <a class="cc glass" href="https://www.linkedin.com/in/khaled-shalaby-ab5457222" target="_blank" rel="noopener"><div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3V9.5zm7 0h3.8v1.6h.1c.5-1 1.8-1.9 3.7-1.9 4 0 4.7 2.600 4.700 6V21h-4v-5c0-1.200 0-2.800-1.700-2.800s-2 1.300-2 2.700V21h-4V9.500z"/></svg></div><div><small>LinkedIn</small><span>Khaled Shalaby</span></div></a>
+        <a class="cc glass" href="https://wa.me/201097608806" target="_blank" rel="noopener"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.500 8.500 0 0 1-12.600 7.400L3 20.500l1.600-5.200A8.500 8.500 0 1 1 21 11.500z"/></svg></div><div><small>WhatsApp</small><span>+20 109 760 8806</span></div></a>
+        <a class="cc glass" href="mailto:khaldshlby457@gmail.com"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg></div><div><small>Email</small><span>khaldshlby457@gmail.com</span></div></a>
+      </div>
+      <form class="glass rv" id="f">
+        <label>Your name<input name="n" required autocomplete="name"></label>
+        <label>Your email<input name="e" type="email" required autocomplete="email"></label>
+        <label>Message<textarea name="m" required></textarea></label>
+        <button class="btn pri" type="submit">Send by email <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <div class="note" role="status" id="note"></div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
 
-    // Mailto Form Handler
-    function handleContact(e) {
-      e.preventDefault();
-      const name = document.getElementById('cName').value;
-      const email = document.getElementById('cEmail').value;
-      const msg = document.getElementById('cMsg').value;
-      window.location.href = `mailto:khaldshlby457@gmail.com?subject=${encodeURIComponent('Portfolio Inquiry from ' + name)}&body=${encodeURIComponent(msg + '\n\nFrom: ' + name + ' (' + email + ')')}`;
-    }
-  </script>
+<footer><div class="wrap">© <span id="y"></span> Khaled Shalaby. Cairo, Egypt.</div></footer>
+
+<script>
+const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
+$('#y').textContent=new Date().getFullYear();
+
+// mobile menu
+const bg=$('.burger'),lk=$('.links');
+const toggle=o=>{lk.classList.toggle('open',o);bg.classList.toggle('open',o);bg.setAttribute('aria-expanded',o)};
+bg.onclick=()=>toggle(!lk.classList.contains('open'));
+$$('.links a').forEach(a=>a.onclick=()=>toggle(false));
+
+// scroll reveal (staggered per parent)
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  const sib=$$('.rv',e.target.parentElement),i=sib.indexOf(e.target);
+  e.target.style.transitionDelay=Math.min(i,4)*90+'ms';
+  e.target.classList.add('in');io.unobserve(e.target);
+  const n=$('[data-n]',e.target);if(n)count(n);
+}),{threshold:.15});
+$$('.rv').forEach(el=>io.observe(el));
+
+// counters
+function count(el){
+  const t=+el.dataset.n,s=el.dataset.s||'';let st=null;
+  const step=ts=>{st??=ts;const p=Math.min((ts-st)/1100,1);el.textContent=Math.round(t*(1-Math.pow(1-p,3)))+s;if(p<1)requestAnimationFrame(step)};
+  requestAnimationFrame(step);
+}
+
+// active nav link
+const secs=$$('main section[id]'),ls=$$('.links a:not(.cta)');
+new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)ls.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'}).observe&&secs.forEach(s=>new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)ls.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+s.id))}),{rootMargin:'-45% 0px -50% 0px'}).observe(s));
+
+// cursor glow (desktop only)
+if(matchMedia('(hover:hover)').matches){const g=$('#glow');addEventListener('pointermove',e=>{g.style.left=e.clientX+'px';g.style.top=e.clientY+'px'})}
+
+// contact form -> mailto
+$('#f').addEventListener('submit',e=>{
+  e.preventDefault();
+  const d=new FormData(e.target);
+  const body=`${d.get('m')}\n\nFrom: ${d.get('n')} (${d.get('e')})`;
+  location.href=`mailto:khaldshlby457@gmail.com?subject=${encodeURIComponent('Hello Khaled, message from '+d.get('n'))}&body=${encodeURIComponent(body)}`;
+  $('#note').textContent='Opening your email app. If nothing opens, write to khaldshlby457@gmail.com.';
+});
+</script>
 </body>
 </html>
